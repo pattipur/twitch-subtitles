@@ -186,7 +186,13 @@ For issues, suggestions, or contributions:
 
 ## License
 
-This project is open source. See LICENSE file for details.
+MIT License
+
+Author
+
+Created by Marisombra — the shadow tide.
+Also known as Patricia, a developer, game designer, and bilingual dreamer.
+Check out more projects at https://github.com/pattipur
 
 ## Disclaimer
 
