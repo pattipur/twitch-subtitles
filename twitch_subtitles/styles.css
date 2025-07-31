@@ -1,0 +1,136 @@
+/* styles.css - Styles for subtitle overlay */
+
+.twitch-subtitles-overlay {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.twitch-subtitles-overlay .subtitle-text {
+  transition: opacity 0.3s ease-in-out;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  .twitch-subtitles-overlay {
+    font-size: 14px !important;
+    width: 90% !important;
+    bottom: 40px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .twitch-subtitles-overlay {
+    font-size: 12px !important;
+    width: 95% !important;
+    bottom: 30px !important;
+  }
+}
+
+/* Animation for subtitle appearance */
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.twitch-subtitles-overlay .subtitle-text {
+  animation: subtitleFadeIn 0.3s ease-out;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .twitch-subtitles-overlay .subtitle-text {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    border: 2px solid #ffffff;
+    font-weight: 700;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .twitch-subtitles-overlay .subtitle-text {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Dark theme compatibility */
+@media (prefers-color-scheme: dark) {
+  .twitch-subtitles-overlay .subtitle-text {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* Light theme compatibility */
+@media (prefers-color-scheme: light) {
+  .twitch-subtitles-overlay .subtitle-text {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Focus and accessibility */
+.twitch-subtitles-overlay:focus-within {
+  outline: 2px solid #9146ff;
+  outline-offset: 2px;
+}
+
+/* Ensure subtitles don't interfere with Twitch UI */
+.twitch-subtitles-overlay {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Language-specific adjustments */
+.twitch-subtitles-overlay[lang="ja"],
+.twitch-subtitles-overlay[lang="zh"],
+.twitch-subtitles-overlay[lang="ko"] {
+  font-family: 'Noto Sans CJK', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  line-height: 1.6;
+}
+
+.twitch-subtitles-overlay[lang="ar"],
+.twitch-subtitles-overlay[lang="he"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Status indicator styles */
+.subtitle-status-indicator {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(145, 70, 255, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 10001;
+  transition: opacity 0.3s ease;
+}
+
+.subtitle-status-indicator.recording {
+  background: rgba(255, 68, 68, 0.9);
+}
+
+.subtitle-status-indicator.translating {
+  background: rgba(0, 245, 196, 0.9);
+  color: #0e0e10;
+}

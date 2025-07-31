@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 320px;
+            padding: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0e0e10;
+            color: #efeff1;
+            margin: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #464649;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+            color: #9146ff;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #18181b;
+            border-radius: 8px;
+        }
+
+        .status-text {
+            font-weight: 500;
+        }
+
+        .status.active {
+            background: #1f4e3d;
+            border: 1px solid #00f5c4;
+        }
+
+        .status.inactive {
+            background: #3a2434;
+            border: 1px solid #bf94ff;
+        }
+
+        .toggle-btn {
+            background: #9146ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background: #7c3aed;
+        }
+
+        .toggle-btn.active {
+            background: #00f5c4;
+            color: #0e0e10;
+        }
+
+        .settings {
+            margin-top: 20px;
+        }
+
+        .setting-group {
+            margin-bottom: 16px;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .setting-input, .setting-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #464649;
+            border-radius: 4px;
+            background: #18181b;
+            color: #efeff1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .setting-input:focus, .setting-select:focus {
+            outline: none;
+            border-color: #9146ff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .lang-btn {
+            padding: 6px 8px;
+            border: 1px solid #464649;
+            background: #18181b;
+            color: #efeff1;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            border-color: #9146ff;
+        }
+
+        .lang-btn.active {
+            background: #9146ff;
+            border-color: #9146ff;
+            color: white;
+        }
+
+        .error {
+            background: #ff4444;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .info {
+            font-size: 12px;
+            color: #adadb8;
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #464649;
+        }
+
+        .preview {
+            background: #18181b;
+            border: 1px solid #464649;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .preview-text {
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎬 Twitch Subtitles</h1>
+    </div>
+
+    <div id="error-message" class="error" style="display: none;"></div>
+
+    <div id="status" class="status inactive">
+        <span class="status-text">Subtitles: Inactive</span>
+        <button id="toggle-btn" class="toggle-btn">Enable</button>
+    </div>
+
+    <div class="settings">
+        <div class="setting-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="translation-enabled" class="checkbox" checked>
+                <label for="translation-enabled" class="setting-label">Enable Translation</label>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Target Language</label>
+            <select id="target-language" class="setting-select">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="zh">Chinese</option>
+                <option value="ru">Russian</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Font Size</label>
+            <select id="font-size" class="setting-select">
+                <option value="14px">Small</option>
+                <option value="18px" selected>Medium</option>
+                <option value="22px">Large</option>
+                <option value="28px">Extra Large</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Text Color</label>
+            <input type="color" id="text-color" class="setting-input" value="#ffffff">
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Background Opacity</label>
+            <input type="range" id="bg-opacity" class="setting-input" min="0" max="100" value="80">
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Preview</label>
+            <div class="preview">
+                <div id="preview-text" class="preview-text">Sample subtitle text</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info">
+        Works on Twitch stream pages. Make sure to allow microphone access for speech recognition.
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
