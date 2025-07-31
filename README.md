@@ -20,7 +20,17 @@ Real-time subtitles with English translation for Twitch streams using Web Speech
 4. **Click "Load unpacked"** and select the extension folder
 5. **Pin the extension** to your toolbar for easy access
 
+Install via ZIP
+
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue?logo=google-drive)](https://github.com/pattipur/twitch-subtitles-extension/archive/refs/heads/main.zip)
+
+> Click the button above to download the extension. Then:
+> 1. Extract the ZIP.
+> 2. Open Chrome and go to `chrome://extensions/`
+> 3. Enable "Developer mode"
+> 4. Click "Load unpacked" and select the extracted folder.
 ### File Structure
+
 ```
 twitch-subtitles-extension/
 ├── manifest.json          # Extension configuration
