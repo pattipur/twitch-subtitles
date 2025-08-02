@@ -192,7 +192,7 @@ Author
 
 Created by Marisombra — the shadow tide.
 Also known as Patricia, a developer, game designer, and bilingual dreamer.
-Check out more projects at https://github.com/pattipur
+Check out more projects at https://github.com/marisombra-dev
 
 ## Disclaimer
 
